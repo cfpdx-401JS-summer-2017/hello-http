@@ -16,11 +16,11 @@ describe('/greeting', () => {
             });
     });
 
-    xit('responds with hello name if name but no salutation given', done => {
-        request.get('/greeting/joe')
+    it('responds with hello name if name but no salutation given', done => {
+        request.get('/greeting/Steph')
             .end((err, res) => {
                 if (err) done(err);
-                assert.equal(res.url, 'hello joe');
+                assert.equal(res.text, 'Hello Steph');
                 done();
             });
     });
