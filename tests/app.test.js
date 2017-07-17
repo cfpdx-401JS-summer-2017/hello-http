@@ -43,6 +43,15 @@ describe('server', () => {
                     done();
                 });
         });
+
+        it('/greeting/?salutation=hi', done => {
+            request.get('/greeting/?salutation=hi')
+                .end((err, res) => {
+                    if (err) return done(err);
+                    assert.equal(res.text, 'Hi Stranger');
+                    done();
+                });
+        });
     });
 
     describe('facts', ()=> {
