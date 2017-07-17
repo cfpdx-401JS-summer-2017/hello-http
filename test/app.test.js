@@ -12,13 +12,21 @@ describe('server', () => {
 
   it('says hello world', done => {
     request.get('/')
-      .get((err, res) => {
+      .end((err, res) => {
         if(err) return done(err);
         assert.equal(res.text, 'hello world');
         done();
       });
   });
 
+  it('return a greeting when the /greeting path recieves a GET method', done => {
+    request.get('/greeting')
+      .end((err, res) => {
+        if(err) return done(err);
+        assert.equal(res.text, 'hello stranger');
+        done();
+      });
+  });
 
 
 });
