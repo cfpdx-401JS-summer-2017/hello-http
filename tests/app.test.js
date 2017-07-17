@@ -21,6 +21,13 @@ describe('app', () => {
                 done();
             });
     });
+    it('greets a stranger', done => {
+        request.get('/greeting?salutation=Hola')
+            .end((err, res) => {
+                assert.equal(res.text, 'Hola stranger');
+                done();
+            });
+    });
     it('custom greets by name', done => {
         request.get('/greeting/Joe?salutation=Yo')
             .end((err, res) => {
