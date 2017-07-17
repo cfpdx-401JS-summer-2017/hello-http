@@ -7,12 +7,44 @@ const app = require('../lib/app');
 describe('server', () => {
     const request = chai.request(app);
 
-    it('says hello world', done => {
-        request.get('/')
-            .end((err, res) => {
-                if(err) return done(err);
-                assert.equal(res.text, 'hello world');
-                done();
-            });
+    describe('greetings', () => {
+        it('says hello world', done => {
+            request.get('/')
+                .end((err, res) => {
+                    if (err) return done(err);
+                    assert.equal(res.text, 'hello world');
+                    done();
+                });
+        });
+
+        it('/greeting', done => {
+            request.get('/greeting')
+                .end((err, res) => {
+                    if (err) return done(err);
+                    assert.equal(res.text, 'Hello stranger');
+                    done();
+                });
+        });
+
+        it('/greeting/christy', done => {
+            request.get('/greeting/christy')
+                .end((err, res) => {
+                    if (err) return done(err);
+                    assert.equal(res.text, 'Hello christy');
+                    done();
+                });
+        });
     });
+
+    describe('facts', ()=> {
+        it('/fact', done => {
+            request.get('/fact')
+                .end((err, res) => {
+                    if (err) return done(err);
+                    assert.equal(res.text, 'random http fact');
+                    done();
+                });
+        });
+    });
+
 });
