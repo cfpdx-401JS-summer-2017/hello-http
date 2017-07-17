@@ -1,0 +1,29 @@
+{
+  "name": "hello-http",
+  "version": "1.0.0",
+  "description": "My first attempt at building a rudimentary surver",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha tests",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thomson42/hello-http.git"
+  },
+  "author": "Christopher Thomson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Thomson42/hello-http/issues"
+  },
+  "homepage": "https://github.com/Thomson42/hello-http#readme",
+  "devDependencies": {
+    "chai": "^4.1.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.4.2"
+  }
+}
