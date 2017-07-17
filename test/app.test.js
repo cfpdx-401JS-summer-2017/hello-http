@@ -29,21 +29,38 @@ describe('server', () => {
   });
 
   it('returns a 404 error with a specific message when served with an undefined Method and/or url path', done => {
-    request.post('/anything')
+    request.post('/nonsense')
       .end((err, res) => {
-        // if(err) return done(err);
-        assert.equal(res.statusCode, 404);
-        assert.equal(res.text, 'CANNOT POST /anything');
-        done();
+        if(err) {
+          assert.equal(res.statusCode, 404);
+          assert.equal(res.text, 'CANNOT POST /nonsense');
+          done();
+        } else if(!err) {
+          assert.isOk(false);
+          done();
+        }
       });
   });
 
   it('returns a 404 error with a specific message when served with an undefined Method and url path', done => {
     request.delete('/foo')
       .end((err, res) => {
-        // if(err) return done(err);
-        assert.equal(res.statusCode, 404);
-        assert.equal(res.text, 'CANNOT DELETE /foo');
+        if(err) {
+          assert.equal(res.statusCode, 404);
+          assert.equal(res.text, 'CANNOT DELETE /foo');
+          done();
+        } else if(!err) {
+          assert.isOk(false);
+          done();
+        }
+      });
+  });
+
+  it('returns a greeting using the specified name', done => {
+    request.get('/greeting/bob')
+      .end((err, res) => {
+        if(err) return done(err);
+        assert.equal(res.text, 'hello bob');
         done();
       });
   });
