@@ -3,24 +3,23 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
     "test": "mocha tests",
-    "start": "npm test -- -w"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/anwarmontasir/hello-http.git"
   },
-  "author": "",
+  "author": "Anwar Montasir",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/anwarmontasir/hello-http/issues"
   },
   "homepage": "https://github.com/anwarmontasir/hello-http#readme",
   "devDependencies": {
+    "chai": "^4.1.0",
+    "chai-http": "^3.0.0",
     "eslint": "^4.2.0",
     "mocha": "^3.4.2"
   }
