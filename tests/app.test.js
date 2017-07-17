@@ -35,4 +35,11 @@ describe('app', () => {
                 done();
             });
     });
+    it('asks for facts', done => {
+        request.get('/fact')
+            .end((err, res) => {
+                assert.ok(res.text);
+                done();
+            });
+    });
 });
