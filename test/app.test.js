@@ -19,11 +19,29 @@ describe('server', () => {
       });
   });
 
-  it('return a greeting when the /greeting path recieves a GET method', done => {
+  it('return a greeting when the /greeting path receives a GET method', done => {
     request.get('/greeting')
       .end((err, res) => {
         if(err) return done(err);
         assert.equal(res.text, 'hello stranger');
+        done();
+      });
+  });
+
+  it('returns a 404 error with a specific message when served with an undefined Method and url path', done => {
+    request.post('/anything')
+      .end((err, res) => {
+        if(err) return done(err);
+        assert.equal(res.text, 'CANNOT POST /anything');
+        done();
+      });
+  });
+
+  it('returns a 404 error with a specific message when served with an undefined Method and url path', done => {
+    request.delete('/foo')
+      .end((err, res) => {
+        if(err) return done(err);
+        assert.equal(res.text, 'CANNOT DELETE /foo');
         done();
       });
   });
