@@ -15,7 +15,7 @@ describe('app', () =>{
         done();
     });
 });
- it('works', done => {
+ it('changes the greeting to a different name', done => {
         request.get('/greeting/joe')
             .end((err, res) => {
                 if (err) done(err);
