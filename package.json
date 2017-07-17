@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha test",
     "start": "node server.js",
-    "test: watch": "npm test -- -w"
+    "test:watch": "npm test -- -w"
   },
   "repository": {
     "type": "git",

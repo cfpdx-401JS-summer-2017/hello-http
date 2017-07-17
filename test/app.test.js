@@ -28,10 +28,11 @@ describe('server', () => {
       });
   });
 
-  it('returns a 404 error with a specific message when served with an undefined Method and url path', done => {
+  it('returns a 404 error with a specific message when served with an undefined Method and/or url path', done => {
     request.post('/anything')
       .end((err, res) => {
-        if(err) return done(err);
+        // if(err) return done(err);
+        assert.equal(res.statusCode, 404);
         assert.equal(res.text, 'CANNOT POST /anything');
         done();
       });
@@ -40,7 +41,8 @@ describe('server', () => {
   it('returns a 404 error with a specific message when served with an undefined Method and url path', done => {
     request.delete('/foo')
       .end((err, res) => {
-        if(err) return done(err);
+        // if(err) return done(err);
+        assert.equal(res.statusCode, 404);
         assert.equal(res.text, 'CANNOT DELETE /foo');
         done();
       });
