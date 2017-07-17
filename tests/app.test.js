@@ -21,7 +21,7 @@ describe('server', () => {
             request.get('/greeting')
                 .end((err, res) => {
                     if (err) return done(err);
-                    assert.equal(res.text, 'Hello stranger');
+                    assert.equal(res.text, 'Hello Stranger');
                     done();
                 });
         });
@@ -30,7 +30,16 @@ describe('server', () => {
             request.get('/greeting/christy')
                 .end((err, res) => {
                     if (err) return done(err);
-                    assert.equal(res.text, 'Hello christy');
+                    assert.equal(res.text, 'Hello Christy');
+                    done();
+                });
+        });
+
+        it('/greeting/christy?salutation=hey', done => {
+            request.get('/greeting/christy?salutation=hey')
+                .end((err, res) => {
+                    if (err) return done(err);
+                    assert.equal(res.text, 'Hey Christy');
                     done();
                 });
         });
