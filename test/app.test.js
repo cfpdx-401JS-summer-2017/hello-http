@@ -10,15 +10,6 @@ const app = require('../lib/app');
 describe('server', () => {
   const request = chai.request(app);
 
-  it('says hello world', done => {
-    request.get('/')
-      .end((err, res) => {
-        if(err) return done(err);
-        assert.equal(res.text, 'hello world');
-        done();
-      });
-  });
-
   it('return a greeting when the /greeting path receives a GET method', done => {
     request.get('/greeting')
       .end((err, res) => {
