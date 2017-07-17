@@ -51,5 +51,16 @@ describe('/greeting', () => {
                 done();
             });
     });
+});
 
+describe('/fact', () => {
+    const request = chai.request(app);
+    it('is a valid path', done => {
+        request.get('/fact')
+            .end((err, res) => {
+                if (err) done(err);
+                assert.equal(res.statusCode, 200);
+                done();
+            });
+    });
 });
