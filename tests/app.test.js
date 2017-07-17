@@ -42,4 +42,14 @@ describe('/greeting', () => {
                 done();
             });
     });
+
+    it('gives an error if status code is not 200', done => {
+        request.get('/puppies')
+            .end((err, res) => {
+                assert.equal(res.statusCode, 404);
+                assert.equal(res.text, 'CANNOT GET /puppies');
+                done();
+            });
+    });
+
 });
