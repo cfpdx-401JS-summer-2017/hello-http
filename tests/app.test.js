@@ -24,4 +24,22 @@ describe('/greeting', () => {
                 done();
             });
     });
+
+    it('responds with salutation if given', done => {
+        request.get('/greeting/Steph?salutation=yo')
+            .end((err, res) => {
+                if (err) done(err);
+                assert.equal(res.text, 'yo Steph');
+                done();
+            });
+    });
+
+    it('responds with salutation if given with no name', done => {
+        request.get('/greeting?salutation=yo')
+            .end((err, res) => {
+                if (err) done(err);
+                assert.equal(res.text, 'yo Stranger');
+                done();
+            });
+    });
 });
