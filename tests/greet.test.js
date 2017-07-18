@@ -4,10 +4,10 @@
 
 const assert = require('assert');
 const app = require('../lib/app.js');
-const server = require('../server');
 
 describe('greeting', () => {
-	console.log('server: ', server);
+	const url = 'http://www.google.com';
+	app.greeting(url);
 
 	it('method is GET', () => {
 		if (
