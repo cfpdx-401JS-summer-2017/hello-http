@@ -15,12 +15,28 @@ describe('app', () =>{
         done();
     });
 });
- it('changes the greeting to a different name', done => {
-        request.get('/greeting/joe')
+ it('changes the greeting to stranger', done => {
+        request.get('/greeting/stranger')
             .end((err, res) => {
                 if (err) done(err);
-                assert.equal(res.text, 'hello friend');
+                assert.equal(res.text, 'hello stranger');
                 done();
             });
     });
+    it.skip('changes the greeting to a different name', done => {
+        request.post('/greeting/joe')
+            .end((err, res) => {
+                if (err) done(err);
+                assert.equal(res.text, 'hello stranger');
+                done();
+            });
+    });
+     it.skip('changes the greeting to a different name', done => {
+        request.delete('/greeting/stranger')
+            .end((err, res) => {
+                if (err) done(err);
+                assert.equal(res.text, 'hello stranger');
+                done();
+            });
+    }); 
 });
