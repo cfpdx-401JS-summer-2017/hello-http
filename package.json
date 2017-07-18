@@ -1,0 +1,33 @@
+{
+  "name": "hello-http",
+  "version": "1.0.0",
+  "main": "server.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.1.0",
+    "chai-http": "^3.0.0",
+    "http": "0.0.0",
+    "mocha": "^3.4.2",
+    "superagent": "^3.5.2"
+  },
+  "scripts": {
+    "test": "mocha tests",
+    "test:watch": "npm test -- -w",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cfpdx-401JS-summer-2017/hello-http.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cfpdx-401JS-summer-2017/hello-http/issues"
+  },
+  "homepage": "https://github.com/cfpdx-401JS-summer-2017/hello-http#readme",
+  "description": ""
+}
