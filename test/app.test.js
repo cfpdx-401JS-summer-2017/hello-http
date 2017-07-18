@@ -10,16 +10,36 @@ describe('/greeting', ()=>{
         request.get('/greeting')
             .end((err,res)=> {
                 if (err) done(err);
-                assert.equal(res.text, 'hello stranger');
+                assert.equal(res.text, 'Hello Stranger');
                 done();
             });
     });
     it('says hello person', (done)=>{
-        request.get('/greeting')
+        request.get('/greeting/Christopher')
             .end((err,res)=> {
                 if (err) done(err);
-                assert.equal(res.text, 'hello stranger');
+                assert.equal(res.text, 'Hello Christopher');
+            });
+        request.get('/greeting/Ben')
+            .end((err,res)=> {
+                if (err) done(err);
+                assert.equal(res.text, 'Hello Ben');
+            });
+        request.get('/greeting/Julia')
+            .end((err,res)=> {
+                if (err) done(err);
+                assert.equal(res.text, 'Hello Julia');
                 done();
             });
+    });
+    it('adjusts greeting', (done)=> {
+        
+        request.get('/greeting/jane?salutation=yo')
+            .end((err,res)=> {
+                if (err) done(err);
+                assert.equal(res.text, 'yo jane');
+                done();
+            });
+
     });
 });
