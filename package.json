@@ -1,0 +1,27 @@
+{
+  "name": "hello-http",
+  "version": "1.0.0",
+  "description": "hello-http lab",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha tests",
+    "test:watch": "npm test -- -w",
+    "start": "npm test -- -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markpetrie/hello-http.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/markpetrie/hello-http/issues"
+  },
+  "homepage": "https://github.com/markpetrie/hello-http#readme",
+  "devDependencies": {
+    "chai": "^4.1.0",
+    "chai-http": "^3.0.0",
+    "eslint": "^4.2.0",
+    "mocha": "^3.4.2"
+  }
+}
