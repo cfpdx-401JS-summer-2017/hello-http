@@ -33,7 +33,7 @@ describe('server', () => {
       });
   });
 
-  it('returns a 404 error with a specific message when served with an undefined Method and url path', done => {
+  it('returns a 404 error with a specific message when served with an undefined Method and url/or path', done => {
     request.delete('/foo')
       .end((err, res) => {
         if(err) {
@@ -56,5 +56,13 @@ describe('server', () => {
       });
   });
 
+  it('returns a greeting using a specified name and salutation', done => {
+    request.get('/greeting/bob?salutation=hey there')
+      .end((err, res) => {
+        if(err) return done(err);
+        assert.equal(res.text, 'hey there bob');
+        done();
+      });
+  });
 
 });
