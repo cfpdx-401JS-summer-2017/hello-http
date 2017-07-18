@@ -6,6 +6,9 @@ const fact = require('../lib/fact');
 
 const app = require('../lib/app');
 
+// TODO later: change these into unit tests; only use integration tests to check
+// if going to /greeting gives us 'salutation' 'name'
+// also add unit tests for greeting and facts functions
 describe('/greeting', () => {
     const request = chai.request(app);
     it('responds with hello stranger if no name or salutation given', done => {
@@ -71,6 +74,18 @@ describe('/fact', () => {
                 if (err) done(err);
 
                 assert.include(fact.facts, res.text);
+                done();
+            });
+    });
+});
+
+describe('/logs', () => {
+    const request = chai.request(app);
+    it('logs folder is not empty after a post is made', done => {
+        request.post('/logs')
+            .end((err, res) => {
+                if (err) done(err);
+                assert.isAtLeast(res.text, 1);
                 done();
             });
     });
