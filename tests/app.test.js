@@ -40,4 +40,19 @@ describe('server', () => {
             });
     });
 
+    it('returns random fact', done => {
+
+        request.get('/fact')
+
+            .end((err, res) => {
+                if (err) return done(err);
+                assert.notOk(res.err);
+                console.log(res.text);
+                assert.equal(res.text, 'random fact 1');
+                
+                done();
+
+            });
+    });
+
 });
