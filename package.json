@@ -1,0 +1,28 @@
+{
+  "name": "hello-http",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test",
+    "start": "node server.js",
+    "test:watch": "npm test -- -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jchurchman/hello-http.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jchurchman/hello-http/issues"
+  },
+  "homepage": "https://github.com/jchurchman/hello-http#readme",
+  "devDependencies": {
+    "chai": "^4.1.0",
+    "chai-http": "^3.0.0",
+    "eslint": "^4.2.0",
+    "mocha": "^3.4.2",
+    "superagent": "^3.5.2"
+  }
+}
