@@ -4,7 +4,7 @@ chai.use(chaiHttp);
 const app = require('../lib/app.js');
 const assert = require('assert');
 // each of these inital 3 or 4 tests will be incorperating GETS meaning HTTP 200 responce codes 
-describe('/greeting', ()=>{
+describe('greeting', ()=>{
     const request = chai.request(app);
     it('says hello', (done)=>{
         request.get('/greeting')
@@ -42,4 +42,16 @@ describe('/greeting', ()=>{
             });
 
     });
+});
+describe('404 error', ()=> {
+    const request = chai.request(app);
+    it('should return status code 404 Not Found when a missing path is taken', (done) => {
+        request.post('/heck/you')
+            .end((err,res) => {
+                assert.ok(res.notFound);
+                done();
+            });
+
+    });
+
 });
