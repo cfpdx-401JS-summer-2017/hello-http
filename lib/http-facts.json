@@ -1,0 +1,4 @@
+[{ "fact": "HTTP stands for HyperText Transfer Protocol" },
+{ "fact": "HTTP is the default method for web browsers to communicate" },
+{ "fact": "HTTP connections default to port 80" },
+{ "fact": "HTTP sends a status code response with every data transfer" }]

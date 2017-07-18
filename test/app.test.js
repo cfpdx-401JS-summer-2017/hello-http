@@ -65,11 +65,20 @@ describe('server', () => {
       });
   });
 
-  it('returns a greeting wtih specifed salutation even if no name given', done => {
+  it('returns a greeting with specified salutation even if no name given', done => {
     request.get('/greeting?salutation=what up')
       .end((err, res) => {
         if(err) return done(err);
         assert.equal(res.text, 'what up stranger');
+        done();
+      });
+  });
+
+  it('returns a random fact about HTTP', done => {
+    request.get('/fact')
+      .end((err, res) => {
+        if(err) return done(err);
+        assert.isOk(res);
         done();
       });
   });
