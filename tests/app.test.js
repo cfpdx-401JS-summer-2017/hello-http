@@ -2,6 +2,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 const assert = chai.assert;
+const fact = require('../lib/fact');
 
 const app = require('../lib/app');
 
@@ -63,4 +64,16 @@ describe('/fact', () => {
                 done();
             });
     });
+
+    it('gives a fact from the array of facts', done => {
+        request.get('/fact')
+            .end((err, res) => {
+                if (err) done(err);
+
+                assert.include(fact.facts, res.text);
+                done();
+            });
+    });
+
+
 });
