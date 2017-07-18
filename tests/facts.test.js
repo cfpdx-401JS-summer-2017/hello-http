@@ -2,7 +2,7 @@
 // GET and the url (path) is `/fact`
 
 const assert = require('assert');
-const app = require('./lib/app.js');
+const app = require('../lib/app.js');
 const fs = require('graceful-fs');
 
 describe('greeting', () => {

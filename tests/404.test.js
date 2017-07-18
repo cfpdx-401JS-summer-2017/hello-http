@@ -1,6 +1,6 @@
 // error page
 const assert = require('assert');
-const app = require('./lib/app.js');
+const app = require('../lib/app.js');
 
 describe('returns 404 error page', () => {
 	it('has poorly-formed url', () => {});

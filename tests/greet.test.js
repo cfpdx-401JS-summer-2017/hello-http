@@ -3,10 +3,11 @@
 // If name is not included, use stranger, otherwise use name in greeting
 
 const assert = require('assert');
-const app = require('./lib/app.js');
+const app = require('../lib/app.js');
+const server = require('../server');
 
 describe('greeting', () => {
-	console.log('app: ', app);
+	console.log('server: ', server);
 
 	it('method is GET', () => {
 		if (

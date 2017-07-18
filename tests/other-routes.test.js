@@ -1,5 +1,5 @@
 const assert = require('assert');
-const app = require('./lib/app.js');
+const app = require('../lib/app.js');
 
 describe('other routes', () => {
 	it('other route 1', () => {});

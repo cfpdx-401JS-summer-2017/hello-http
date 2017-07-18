@@ -1,16 +1,9 @@
 const http = require('http');
 const app = require('./lib/app.js');
 
-const server = http.createServer(app);
+// const server = http.createServer(app);
 
-// server.res.setHeader('Content-Type', 'application/json');
-
-// server.res.statusCode = 200;
-// server.res.statusMessage = 'success';
-// if (server.req.url === 'error') {
-// 	server.res.statusCode = 400;
-// 	server.res.end('warning');
-// }
+const server = http.createServer((request, response) => {});
 
 const port = 2000;
 

@@ -2,7 +2,7 @@
 	"name": "hello-http",
 	"version": "1.0.0",
 	"description": "",
-	"main": "server.js",
+	"main": "lib/app.js",
 	"directories": {
 		"lib": "lib",
 		"test": "tests"
@@ -20,5 +20,9 @@
 	"bugs": {
 		"url": "https://github.com/wbeck32/hello-http/issues"
 	},
-	"homepage": "https://github.com/wbeck32/hello-http#readme"
+	"homepage": "https://github.com/wbeck32/hello-http#readme",
+	"devDependencies": {
+		"graceful-fs": "^4.1.11",
+		"mocha": "^3.4.2"
+	}
 }
