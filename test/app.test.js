@@ -83,4 +83,12 @@ describe('server', () => {
       });
   });
 
+  it('posts a log to the log folder', done => {
+    request.post('/log')
+      .end((err, res) => {
+        if(err) return done(err);
+        assert.isOk(res);
+        done();
+      });
+  });
 });

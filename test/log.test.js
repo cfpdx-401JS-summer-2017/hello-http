@@ -10,11 +10,10 @@ const assert = chai.assert;
 
 const log = require('../lib/log');
 
-describe.only('log', () => {
-  const request = chai.request(log);
+describe.skip('log', () => {
 
   const dir = path.join(__dirname, '../log');
-  console.log(dir);
+
   before(done => {
     rimraf(dir, err => {
       if (err) done(err);
