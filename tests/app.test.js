@@ -37,7 +37,6 @@ describe('server', () => {
                 if (err) return done(err);
                 assert.equal(res.text, 'yo monica');
                 done();
-
             });
     });
 
@@ -56,8 +55,6 @@ describe('server', () => {
                 assert.oneOf(res.text, randomFactList);
 
                 done();
-
             });
     });
-
 });
