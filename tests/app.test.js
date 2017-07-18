@@ -59,7 +59,7 @@ describe('server', () => {
             request.get('/fact')
                 .end((err, res) => {
                     if (err) return done(err);
-                    assert.equal(res.text, 'random http fact');
+                    assert.ok(res.text);
                     done();
                 });
         });
