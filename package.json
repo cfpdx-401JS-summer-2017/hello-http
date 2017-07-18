@@ -26,5 +26,8 @@
     "chai-http": "^3.0.0",
     "eslint": "^4.2.0",
     "mocha": "^3.4.2"
+  },
+  "dependencies": {
+    "figlet": "^1.2.0"
   }
 }

@@ -12,7 +12,7 @@ describe('server', () => {
             request.get('/')
                 .end((err, res) => {
                     if (err) return done(err);
-                    assert.equal(res.text, 'hello world');
+                    assert.equal(res.text, 'Hello World!');
                     done();
                 });
         });
