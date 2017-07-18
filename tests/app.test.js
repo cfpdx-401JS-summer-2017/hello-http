@@ -65,4 +65,15 @@ describe('server', () => {
         });
     });
 
+    describe('logs', () => {
+        it('/log', done => {
+            request.post('/log')
+                .end((err, res) => {
+                    if (err) return done(err);
+                    assert.ok(res.text);
+                    done();
+                });
+        });
+    });
+
 });
