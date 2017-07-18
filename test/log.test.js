@@ -2,6 +2,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const rimraf = require('rimraf');
 const path = require('path');
+const mkdirp = require('mkdirp');
 
 chai.use(chaiHttp);
 
@@ -12,11 +13,18 @@ const log = require('../lib/log');
 describe.only('log', () => {
   const request = chai.request(log);
 
-  const dir = path.join(__dirname, 'log');
-
+  const dir = path.join(__dirname, '../log');
+  console.log(dir);
   before(done => {
     rimraf(dir, err => {
       if (err) done(err);
+      else done();
+    });
+  });
+
+  before(done => {
+    mkdirp(dir, err => {
+      if(err) return done(err);
       else done();
     });
   });
@@ -29,15 +37,6 @@ describe.only('log', () => {
       done();
     });
 
-  });
-
-  it.skip('saves the msg passed as the body of the file', done => {
-    const msg = 'Saving stuff is cool!';
-    log(msg, (err, logged) => {
-      if (err) return done(err);
-      assert.equal(logged.timestamp.length, 24);
-      done();
-    });
   });
 
 });

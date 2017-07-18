@@ -22,11 +22,10 @@
     "chai": "^4.1.0",
     "chai-http": "^3.0.0",
     "eslint": "^4.2.0",
+    "mkdir": "0.0.2",
     "mocha": "^3.4.2",
     "rimraf": "^2.6.1",
     "superagent": "^3.5.2"
   },
-  "dependencies": {
-    "mkdir": "0.0.2"
-  }
+  "dependencies": {}
 }
