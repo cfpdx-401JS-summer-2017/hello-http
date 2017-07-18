@@ -4,6 +4,7 @@ const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 const { assert } = chai;
 const app = require('../lib/app');
+const random = require('../lib/random.facts.js');
 
 describe('server', () => {
     const request = chai.request(app);
@@ -42,14 +43,18 @@ describe('server', () => {
 
     it('returns random fact', done => {
 
+        var randomFactList = [
+            'http is an application protocol for distributed, collaborative, and hypermedia information systems.',
+            'http is the foundation of data communication for the World Wide Web.',
+            'http uses structured text that includes logical hyperlinks between nodes containing text.'];
+
         request.get('/fact')
 
             .end((err, res) => {
                 if (err) return done(err);
-                assert.notOk(res.err);
-                console.log(res.text);
-                assert.equal(res.text, 'random fact 1');
-                
+
+                assert.oneOf(res.text, randomFactList);
+
                 done();
 
             });
