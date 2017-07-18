@@ -81,11 +81,15 @@ describe('/fact', () => {
 
 describe('/logs', () => {
     const request = chai.request(app);
-    it('logs folder is not empty after a post is made', done => {
+    it('body contents are what was sent', done => {
+        const dataObj = { name: 'firstname', phone: '555-555-5555' };
         request.post('/logs')
+            .send(dataObj)
             .end((err, res) => {
                 if (err) done(err);
-                assert.isAtLeast(res.text, 1);
+                console.log('res.body is', res.body);
+                assert.equal(res.body.name, dataObj.name);
+                assert.equal(res.body.phone, dataObj.phone);
                 done();
             });
     });

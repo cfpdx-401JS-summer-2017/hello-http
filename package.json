@@ -25,9 +25,12 @@
     "chai": "^4.1.0",
     "chai-http": "^3.0.0",
     "eslint": "^4.2.0",
-    "mocha": "^3.4.2"
+    "file-system": "^2.2.2",
+    "mocha": "^3.4.2",
+    "path": "^0.12.7"
   },
   "dependencies": {
+    "mkdirp": "^0.5.1",
     "nodemon": "^1.11.0"
   }
 }
