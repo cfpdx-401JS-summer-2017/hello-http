@@ -18,17 +18,17 @@ describe('/greeting', ()=>{
         request.get('/greeting/Christopher')
             .end((err,res)=> {
                 if (err) done(err);
-                assert.equal(res.text, 'Hello Christopher');
+                assert.deepEqual(res.text, 'Hello Christopher');
             });
         request.get('/greeting/Ben')
             .end((err,res)=> {
                 if (err) done(err);
-                assert.equal(res.text, 'Hello Ben');
+                assert.deepEqual(res.text, 'Hello Ben');
             });
         request.get('/greeting/Julia')
             .end((err,res)=> {
                 if (err) done(err);
-                assert.equal(res.text, 'Hello Julia');
+                assert.deepEqual(res.text, 'Hello Julia');
                 done();
             });
     });
@@ -37,7 +37,7 @@ describe('/greeting', ()=>{
         request.get('/greeting/jane?salutation=yo')
             .end((err,res)=> {
                 if (err) done(err);
-                assert.equal(res.text, 'yo jane');
+                assert.deepEqual(res.text, 'yo jane');
                 done();
             });
 
