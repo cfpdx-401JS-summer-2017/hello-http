@@ -37,7 +37,7 @@ describe('/greeting', () => {
             });
     });
 
-    it('returns a random fact', done => {
+    it('facts are there', done => {
         request.get('/fact')
             .end((err, res) => {
                 if (err) done(err);
