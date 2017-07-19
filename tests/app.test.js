@@ -88,7 +88,6 @@ describe('/logs', () => {
             if (err) return err;
             console.log('deleted the files');
         });
-
     });
 
     const request = chai.request(app);
@@ -99,8 +98,27 @@ describe('/logs', () => {
             .end((err, res) => {
                 if (err) done(err);
                 assert.include(res.text, 'timestamp');
-                // assert.equal(res.body.name, dataObj.name);
-                // assert.equal(res.body.phone, dataObj.phone);
+                done();
+            });
+    });
+});
+
+describe('/logs', () => {
+    const request = chai.request(app);
+    it('returns array of all filenames upon get of logs', done => {
+        const dataObj = { name: 'firstname', phone: '555-555-5555' };
+
+        request.post('/logs')
+            .send(dataObj)
+            .end((err, res) => {
+                if (err) done(err);
+            });
+
+        request.get('/logs')
+            .send(dataObj)
+            .end((err, res) => {
+                if (err) done(err);
+                assert.include(res.text, 'timestamp');
                 done();
             });
     });
