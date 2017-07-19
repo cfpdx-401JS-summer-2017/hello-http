@@ -72,10 +72,7 @@ describe('server', () => {
                 .send(animal)
                 .end((err, res) => {
                     if (err) return done(err);
-                    // console.log(res);
-                    // console.log(res.body.name);
-                    assert.equal(res.body.type, animal.type);
-                    assert.equal(res.body.name, animal.name);
+                    assert.include(res.body, 'timestamp');
                     done();
                 });
         });
