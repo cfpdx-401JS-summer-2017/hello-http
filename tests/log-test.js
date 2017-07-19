@@ -5,15 +5,15 @@ const assert = chai.assert;
 
 const log = require('../lib/log');
 
-describe('/log', () => {
+describe.only('log', () => {
     const request = chai.request(log);
 
     it('posts file to logs', done => {
-        request.post('/logs')
-            // .setHeader('content-type', 'application/')
+        request.post('/log')
+            .send('meow')
             .end((err, res) => {
                 if (err) done(err);
-                assert.equal(res.text, 3);
+                assert.equal(res.text, 'meow');
                 done();
             });
     });
