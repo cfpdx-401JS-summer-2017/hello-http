@@ -44,6 +44,7 @@ describe('greeting', ()=>{
     });
 });
 describe('404 error', ()=> {
+    //tests incomplete
     const request = chai.request(app);
     it('should return status code 404 Not Found when a missing path is taken', (done) => {
         request.post('/heck/you')
@@ -54,4 +55,20 @@ describe('404 error', ()=> {
 
     });
 
+});
+describe('logs', ()=> {
+    const request = chai.request(app);
+
+    it('writes a file within the body contents', (done)=>{
+        const firstPost = { username: 'TheJerk#44', comment: 'First!' };
+        request
+            .post('/logs')
+            .send(firstPost)
+            .end((err,res)=> {
+                //console.log(res);
+                //assert.equal(res.body.comment, firstPost.comment);
+                //assert.equal(res.body.username, 'TheJerk#44');
+                done();
+            });
+    });
 });
