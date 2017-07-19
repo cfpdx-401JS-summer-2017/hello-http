@@ -5,6 +5,7 @@ chai.use(chaiHttp);
 const { assert } = chai;
 const app = require('../lib/app');
 const random = require('../lib/random.facts.js');
+const fs = require('fs');
 
 describe('server', () => {
     const request = chai.request(app);
@@ -54,6 +55,22 @@ describe('server', () => {
 
                 assert.oneOf(res.text, randomFactList);
 
+                done();
+            });
+    });
+
+    it('posts data', done => {
+
+        const fileData = 'By the power of Greyskull!';
+
+        request
+            .post('/')
+            .send(fileData)
+            .end((err, res) => {
+                if (err) return done(err);
+
+                assert.ok(fs.statSync('./logs').isDirectory());
+                assert.equal(res.text, fileData);
                 done();
             });
     });
