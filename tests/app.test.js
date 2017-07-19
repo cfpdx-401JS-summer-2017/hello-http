@@ -3,6 +3,9 @@ const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 const assert = chai.assert;
 const fact = require('../lib/fact');
+const fsExtra = require('fs-extra');
+const path = require('path');
+
 
 const app = require('../lib/app');
 
@@ -80,6 +83,14 @@ describe('/fact', () => {
 });
 
 describe('/logs', () => {
+    before(() => {
+        fsExtra.emptyDir(path.join(__dirname, '../logs/'), err => {
+            if (err) return err;
+            console.log('deleted the files');
+        });
+
+    });
+
     const request = chai.request(app);
     it('body contents are what was sent', done => {
         const dataObj = { name: 'firstname', phone: '555-555-5555' };
