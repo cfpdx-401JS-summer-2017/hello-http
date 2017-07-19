@@ -1,26 +1,22 @@
-// Respond with a greeting if the method is GET and url (path) is /greeting/<name>
-// If query string specifies a salutation like /greeting/jane?salutation=yo, use that for the greeting salutation, otherwise hello
-// If name is not included, use stranger, otherwise use name in greeting
-
-const assert = require('assert');
 const app = require('../lib/app.js');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+chai.use(chaiHttp);
+const assert = chai.assert;
 
 describe('greeting', () => {
-	const url = 'http://www.google.com';
-	app.greeting(url);
+	const req = chai.request(app);
+	it('method is GET', done => {
+		req.get('/greeting').set('content-type', 'application/json').query({ id: '90' }).end((err, res) => {
+			if (err) return done(err);
+			console.log('res: ', res.text);
+			// assert.equal(res.text, 'hello world');
+			done();
+		});
 
-	it('method is GET', () => {
-		if (
-			(
-				app,
-				() => {
-					// assert.equals('request type is get');
-				}
-			)
-		)
-			it('url is greeting/<name>', () => {
-				// assert.equal('response is hello <name>');
-			});
+		it('url is greeting/<name>', () => {
+			// assert.equal('response is hello <name>');
+		});
 
 		it('url is greeting/', () => {
 			// assert.equal('response is hello stranger' )
