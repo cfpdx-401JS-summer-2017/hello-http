@@ -30,7 +30,7 @@ describe.skip('log', () => {
 
   it('gives a file with the timestamp as a name', done => {
     const msg = 'I love timestamping';
-    log(msg, (err, logged) => {
+    log.logIt(msg, (err, logged) => {
       if(err) return done(err);
       assert.equal(logged.timestamp.length, 24);
       done();
