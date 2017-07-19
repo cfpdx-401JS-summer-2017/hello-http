@@ -91,7 +91,7 @@ describe('/logs', () => {
     });
 
     const request = chai.request(app);
-    it('body contents are what was sent', done => {
+    it('returns timestamp property', done => {
         const dataObj = { name: 'firstname', phone: '555-555-5555' };
         request.post('/logs')
             .send(dataObj)
@@ -107,18 +107,20 @@ describe('/logs', () => {
     const request = chai.request(app);
     it('returns array of all filenames upon get of logs', done => {
         const dataObj = { name: 'firstname', phone: '555-555-5555' };
-
+        let testTimestamp = '';
         request.post('/logs')
             .send(dataObj)
             .end((err, res) => {
                 if (err) done(err);
+                testTimestamp = res.body.timestamp;
             });
 
         request.get('/logs')
             .send(dataObj)
             .end((err, res) => {
                 if (err) done(err);
-                assert.include(res.text, 'timestamp');
+                // assert.include(res.body, testTimestamp);
+                assert.equal(res.text, 2);
                 done();
             });
     });
