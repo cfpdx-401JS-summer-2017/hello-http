@@ -54,7 +54,9 @@ describe('app', () => {
     it('gets from logs', done => {
         request.get('/logs')
             .end((err, res) => {
-                assert.equal('bar', 'bar');
+                // reimplement rimraf
+                console.log(res.text);
+                assert.equal(JSON.parse(res.text).length, 1);
                 done();
             });
     });
