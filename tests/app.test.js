@@ -83,16 +83,19 @@ describe('/fact', () => {
 });
 
 describe('/logs', () => {
+    // adding this hook to limit the logs directory to two files
+    // NOTE: if you test too rapidly, emptyDir seems to have troubles...
     before(() => {
         fsExtra.emptyDir(path.join(__dirname, '../logs/'), err => {
             if (err) return err;
-            console.log('deleted the files');
+            console.log('deleted extra files');
         });
     });
 
     const request = chai.request(app);
+    const dataObj = { name: 'firstname', phone: '555-555-5555' };
+
     it('returns timestamp property', done => {
-        const dataObj = { name: 'firstname', phone: '555-555-5555' };
         request.post('/logs')
             .send(dataObj)
             .end((err, res) => {
@@ -101,12 +104,8 @@ describe('/logs', () => {
                 done();
             });
     });
-});
 
-describe('/logs', () => {
-    const request = chai.request(app);
     it('returns array of all filenames upon get of logs', done => {
-        const dataObj = { name: 'firstname', phone: '555-555-5555' };
         let testTimestamp = '';
         request.post('/logs')
             .send(dataObj)
@@ -116,11 +115,21 @@ describe('/logs', () => {
             });
 
         request.get('/logs')
-            .send(dataObj)
             .end((err, res) => {
                 if (err) done(err);
-                // assert.include(res.body, testTimestamp);
-                assert.equal(res.text, 2);
+                const num = JSON.parse(res.text);
+                assert.equal(num.length, 2);
+                assert.include(res.text, testTimestamp);
+                done();
+            });
+    });
+
+    xit('returns contents of log for :timestamp', done => {
+        request.get('/logs/:timestamp')
+            .end((err, res) => {
+                if (err) done(err);
+                
+                assert.include(res.body, res.body.timestamp);
                 done();
             });
     });
