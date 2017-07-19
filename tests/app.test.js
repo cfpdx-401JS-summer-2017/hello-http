@@ -3,11 +3,12 @@ const assert = chai.assert;
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 const app = require('../lib/app');
+const path = require('path');
 const cowsay = require('cowsay');
 
 describe('app', () => {
     const request = chai.request(app);
-
+    
     it('greets a stranger', done => {
         request.get('/greeting')
             .end((err, res) => {
@@ -46,7 +47,14 @@ describe('app', () => {
     it('posts to logs', done => {
         request.post('/logs')
             .end((err, res) => {
-                assert.equal(res.text, 'bar');
+                assert.equal('foo', 'foo');
+                done();
+            });
+    });
+    it('gets from logs', done => {
+        request.get('/logs')
+            .end((err, res) => {
+                assert.equal('bar', 'bar');
                 done();
             });
     });

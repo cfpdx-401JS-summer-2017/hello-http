@@ -1,0 +1,1 @@
+{"content":"FACT: REST (Representational State Transfer) was introduced and defined in 2000 by Roy Fielding in his doctoral dissertation.","timestamp":"2017-07-19T00:00:13.208Z"}

@@ -1,1 +1,0 @@
-{"type":"cat","name":"garfield","timestamp":"2017-07-18T22:39:01.781Z"}
