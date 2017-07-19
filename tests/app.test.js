@@ -23,8 +23,17 @@ describe('app', () =>{
                 done();
             });
     });
-    it.skip('changes the greeting to a different name', done => {
-        request.post('/greeting/joe')
+    it('changes the path to an HTTP fact', done => {
+        request.get('/fact')
+            .end((err, res) => {
+                if (err) done(err);
+                assert.isOk(res.text);
+                assert.include(res.text, 'Fact');
+                done();
+            });
+    });
+     it('uses a different salutation in the query', done => {
+        request.get('/greeting/swaggy?salutation=hey')
             .end((err, res) => {
                 if (err) done(err);
                 assert.equal(res.text, 'hello stranger');
