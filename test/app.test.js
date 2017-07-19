@@ -29,27 +29,27 @@ describe('server', () => {
     });
   });
 
-  before(done => {
-    const msg1 = 'I\'m having the time of my life';
-    const msg2 = 'and I owe it all to you';
-    const msg3 = 'something something something rhythm of the song';
-    request.post('/log')
-      .send(msg1)
-      .end((err, res) => {
-        if(err) return done(err);
-        request.post('/log')
-          .send(msg2)
-          .end((err, res) => {
-            if(err) return done(err);
-            request.post('/log')
-              .send(msg3)
-              .end((err, res) => {
-                if (err) return done(err);
-                done();
-              });
-          });
-      });
-  });
+  // before(done => {
+  //   const msg1 = 'I\'m having the time of my life';
+  //   const msg2 = 'and I owe it all to you';
+  //   const msg3 = 'something something something rhythm of the song';
+  //   request.post('/log')
+  //     .send(msg1)
+  //     .end((err, res) => {
+  //       if(err) return done(err);
+  //       request.post('/log')
+  //         .send(msg2)
+  //         .end((err, res) => {
+  //           if(err) return done(err);
+  //           request.post('/log')
+  //             .send(msg3)
+  //             .end((err, res) => {
+  //               if (err) return done(err);
+  //               done();
+  //             });
+  //         });
+  //     });
+  // });
 
   it('return a greeting when the /greeting path receives a GET method', done => {
     request.get('/greeting')
@@ -124,7 +124,7 @@ describe('server', () => {
       });
   });
 
-  it('posts a log to the log folder', done => {
+  it.skip('posts a log to the log folder', done => {
     request.post('/log')
       .send('We like to post it post it')
       .end((err, res) => {
