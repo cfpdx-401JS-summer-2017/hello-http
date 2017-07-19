@@ -67,10 +67,15 @@ describe('server', () => {
 
     describe('logs', () => {
         it('/log', done => {
+            const animal = { type: 'dog', name: 'charlie' };
             request.post('/log')
+                .send(animal)
                 .end((err, res) => {
                     if (err) return done(err);
-                    assert.ok(res.text);
+                    // console.log(res);
+                    // console.log(res.body.name);
+                    assert.equal(res.body.type, animal.type);
+                    assert.equal(res.body.name, animal.name);
                     done();
                 });
         });
