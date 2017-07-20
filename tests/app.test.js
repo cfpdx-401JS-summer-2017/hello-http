@@ -4,11 +4,29 @@ const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 const app = require('../lib/app');
 const path = require('path');
+const rimraf = require('rimraf');
+const mkdirp = require('mkdirp');
 const cowsay = require('cowsay');
 
 describe('app', () => {
     const request = chai.request(app);
     
+    const LOG_DIR = path.join(__dirname, '../logs');
+    
+    before(done => {
+        rimraf(LOG_DIR, err => {
+            if (err) done(err);
+            else done();
+        });
+    });
+
+    before(done => {
+        mkdirp(LOG_DIR, err => {
+            if (err) done(err);
+            else done();
+        });
+    });
+
     it('greets a stranger', done => {
         request.get('/greeting')
             .end((err, res) => {
@@ -47,15 +65,13 @@ describe('app', () => {
     it('posts to logs', done => {
         request.post('/logs')
             .end((err, res) => {
-                assert.equal('foo', 'foo');
+                assert.ok(res);
                 done();
             });
     });
     it('gets from logs', done => {
         request.get('/logs')
             .end((err, res) => {
-                // reimplement rimraf
-                console.log(res.text);
                 assert.equal(JSON.parse(res.text).length, 1);
                 done();
             });
