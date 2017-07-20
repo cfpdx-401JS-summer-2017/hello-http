@@ -1,5 +1,8 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
+const rimraf = require('rimraf');
+const path = require('path');
+const mkdirp = require('mkdirp');
 
 chai.use(chaiHttp);
 
@@ -9,6 +12,44 @@ const app = require('../lib/app');
 
 describe('server', () => {
   const request = chai.request(app);
+
+  const dir = path.join(__dirname, '../log');
+
+  before(done => {
+    rimraf(dir, err => {
+      if (err) done(err);
+      else done();
+    });
+  });
+
+  before(done => {
+    mkdirp(dir, err => {
+      if(err) return done(err);
+      else done();
+    });
+  });
+
+  // before(done => {
+  //   const msg1 = 'I\'m having the time of my life';
+  //   const msg2 = 'and I owe it all to you';
+  //   const msg3 = 'something something something rhythm of the song';
+  //   request.post('/log')
+  //     .send(msg1)
+  //     .end((err, res) => {
+  //       if(err) return done(err);
+  //       request.post('/log')
+  //         .send(msg2)
+  //         .end((err, res) => {
+  //           if(err) return done(err);
+  //           request.post('/log')
+  //             .send(msg3)
+  //             .end((err, res) => {
+  //               if (err) return done(err);
+  //               done();
+  //             });
+  //         });
+  //     });
+  // });
 
   it('return a greeting when the /greeting path receives a GET method', done => {
     request.get('/greeting')
@@ -83,4 +124,30 @@ describe('server', () => {
       });
   });
 
+  it.skip('posts a log to the log folder', done => {
+    request.post('/log')
+      .send('We like to post it post it')
+      .end((err, res) => {
+        if(err) return done(err);
+        assert.isOk(res.timestamp);
+        done();
+      });
+  });
+
+  it.skip('retrieves the contents of a file when given the filename without the file extension', done => {
+    // let timestamp = '';
+    // let body = '';
+    request.post('/log')
+      .send('ground control to major tom')
+      .end((err, res) => {
+        if(err) return done(err);
+        // timestamp = res.timestamp;
+        request.get(`/log/${JSON.stringify(res.timestamp)}`)
+          .end((err, res) => {
+            if(err) return done(err);
+            assert.equal(res.body, 'ground control to major tom');
+            done();
+          });
+      });
+  });
 });

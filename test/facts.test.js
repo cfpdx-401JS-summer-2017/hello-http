@@ -23,7 +23,6 @@ describe('facts', () => {
 
     facts((err, fact) => {
       if(err) return done(err);
-      console.log(fact);
       const factStart = fact.startsWith('HTTP');
       assert.isOk(factStart);
       done();
