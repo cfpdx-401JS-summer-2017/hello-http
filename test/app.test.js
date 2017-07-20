@@ -61,13 +61,12 @@ describe('logs', ()=> {
 
     it('writes a file within the body contents', (done)=>{
         const firstPost = { username: 'TheJerk#44', comment: 'First!' };
-        request
-            .post('/logs')
+        request.post('/logs')
             .send(firstPost)
             .end((err,res)=> {
                 //console.log(res);
-                //assert.equal(res.body.comment, firstPost.comment);
-                //assert.equal(res.body.username, 'TheJerk#44');
+                assert.equal(res.body.comment, firstPost.comment);
+                assert.equal(res.body.username, 'TheJerk#44');
                 done();
             });
     });
