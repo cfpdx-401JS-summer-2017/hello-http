@@ -74,4 +74,18 @@ describe('server', () => {
                 done();
             });
     });
+
+    it('returns all log files', done => {
+
+        request
+            .get('/logs')
+            .end((err, res) => {
+                console.log(res);
+                if (err) return done(err);
+                assert.ok(fs.statSync('./logs').isDirectory());
+                assert.ok(res.body.length);
+                done();
+            });
+    });
+
 });
