@@ -1,5 +1,4 @@
-const promisify = require("util").promisify;
-const app = promisify(require('../lib/app.js'));
+const app = require('../lib/app.js');
 const chai = require('chai');
 const assert = chai.assert;
 const chaiHttp = require('chai-http');
