@@ -7,7 +7,7 @@ chai.use(chaiHttp);
 
 describe('greeting', () => {
 
-  it.only('url is greeting/', () => {
+  it('url is greeting/', () => {
     return chai.request(app)
       .get('/greeting')
       .query({ name: 'yolanda' })
@@ -15,37 +15,25 @@ describe('greeting', () => {
         assert.equal('hello yolanda', res.text)
       })
   }), it('url is greeting/?salutation=<salutation>', () => {
-    req.get('/greeting').query({ salutation: 'Howdy' })
-      .end((err, res) => {
-        if (err) return done(err);
-        assert.equal(
-          JSON.parse(res.text).salutation + ' ' + JSON.parse(res.text).name,
-          'Howdy stranger'
-        );
-        done();
-      });
+    return chai.request(app)
+      .get('/greeting/?salutation=yo')
+      .then(res => {
+        assert.equal('yo stranger', res.text)
+      })
   }), it('url is greeting/<name>', () => {
     const testName = 'Yolanda';
-    req.get('/greeting/:name').query({ name: testName })
-      .end((err, res) => {
-        if (err) return done(err);
-        assert.equal(
-          JSON.parse(res.text).salutation + ' ' + JSON.parse(res.text).name,
-          'Yolanda'
-        );
-        done();
-      });
-  }), it('url is greeting/<name>?salutation=<salutation>', () => {
-    req
+    return chai.request(app)
       .get('/greeting/:name')
-      .query({ name: 'Janice', salutation: 'Greetings Earthling ' })
-      .end((err, res) => {
-        if (err) return done(err);
-        assert.equal(
-          JSON.parse(res.text).salutation + ' ' + JSON.parse(res.text).name,
-          'Greetings Earthling Janice'
-        );
-        done();
-      });
+      .query({ name: testName })
+      .then(res => {
+        assert.equal('hello Yolanda', res.text)
+      })
+  }), it('url is greeting/<name>?salutation=<salutation>', () => {
+    return chai.request(app)
+      .get('/greeting/:name')
+      .query({ name: 'Janice', salutation: 'Greetings Earthling' })
+      .then(res => {
+        assert.equal('Greetings Earthling Janice', res.text)
+      })
   });
 });
