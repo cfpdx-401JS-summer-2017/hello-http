@@ -1,5 +1,5 @@
 const promisify = require("util").promisify;
-const app = require('../lib/app.js');
+const app = promisify(require('../lib/app.js'));
 const chai = require('chai');
 const assert = chai.assert;
 const chaiHttp = require('chai-http');
@@ -11,18 +11,8 @@ describe('greeting', () => {
     return chai.request(app)
       .get('/greeting')
       .query({ name: 'yolanda' })
-      .then(() => {
-        console.log('1:ended:');
-      })
-      .then(g => {
-        console.log('2:ended: ', g);
-      })
-  }), it('url is greeting/', () => {
-    return chai.request(app)
-      .get('/greeting/:name')
-      .query({ salutation: 'Howdy', name: 'yolanda' })
-      .then((res) => { })
-      .then((obj) => {
+      .then(res => {
+        assert.equal('hello yolanda', res.text)
       })
   }), it('url is greeting/?salutation=<salutation>', () => {
     req.get('/greeting').query({ salutation: 'Howdy' })
