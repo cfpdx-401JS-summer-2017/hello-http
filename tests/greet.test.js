@@ -4,14 +4,13 @@ const assert = chai.assert;
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
-describe('greeting', () => {
-
+describe.only('greeting', () => {
   it('url is greeting/', () => {
     return chai.request(app)
       .get('/greeting')
       .query({ name: 'yolanda' })
       .then(res => {
-        assert.equal('hello yolanda', res.text)
+        assert.equal('hello yolanda', res.text);
       })
   }), it('url is greeting/?salutation=<salutation>', () => {
     return chai.request(app)
