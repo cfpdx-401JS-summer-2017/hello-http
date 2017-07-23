@@ -30,6 +30,7 @@
 		"graceful-fs": "^4.1.11",
 		"mocha": "^3.4.2",
 		"mocha-better-spec-reporter": "^3.1.0",
+		"promisify": "0.0.3",
 		"urlencode": "^1.1.0"
 	}
 }
