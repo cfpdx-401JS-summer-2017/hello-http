@@ -1,7 +1,6 @@
 //const net = require('net');
 const http = require('http');
 const app = require('./lib/app');
-const logs = require('./logs');
 
 const server = http.createServer(app);
 
