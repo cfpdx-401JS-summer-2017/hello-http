@@ -1,37 +1,40 @@
 const app = require('../lib/app.js');
 const chai = require('chai');
-const assert = chai.assert;
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
+const assert = chai.assert;
 
 describe.only('greeting', () => {
+  const req = chai.request(app);
+
   it('url is greeting/', () => {
-    return chai.request(app)
-      .get('/greeting')
+    return req.get('/greeting')
       .query({ name: 'yolanda' })
       .then(res => {
+        // console.log('back: ', res.text);
         assert.equal('hello yolanda', res.text);
       })
   }), it('url is greeting/?salutation=<salutation>', () => {
-    return chai.request(app)
-      .get('/greeting/?salutation=yo')
+    req.get('/greeting')
+      .query({ salutation: 'Howdy' })
       .then(res => {
-        assert.equal('yo stranger', res.text)
-      })
-  }), it('url is greeting/<name>', () => {
-    const testName = 'Yolanda';
-    return chai.request(app)
-      .get('/greeting/:name')
-      .query({ name: testName })
-      .then(res => {
-        assert.equal('hello Yolanda', res.text)
-      })
-  }), it('url is greeting/<name>?salutation=<salutation>', () => {
-    return chai.request(app)
-      .get('/greeting/:name')
-      .query({ name: 'Janice', salutation: 'Greetings Earthling' })
-      .then(res => {
-        assert.equal('Greetings Earthling Janice', res.text)
-      })
-  });
+        // console.log('back: ', res.text);
+        assert.equal('Howdy stranger', res.text);
+      });
+  }),
+    it('url is greeting/<name>', () => {
+      const testName = 'Harper';
+      req.get('/greeting/:name')
+        .query({ name: testName })
+        .then(res => {
+          // console.log('back: ', res.text);
+          assert.equal('hello Harper', res.text);
+        });
+    }), it('url is greeting/<name>?salutation=<salutation>', () => {
+      req.get('/greeting/:name')
+        .query({ name: 'Janice', salutation: 'Greetings Earthling ' })
+        .then(res => {
+          assert.equal('Greetings Earthling Janice', res.text);
+        });
+    });
 });

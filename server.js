@@ -1,10 +1,8 @@
-const promisify = require('promisify').util();
-const http = promisify(require('http'));
-const server = promisify(http.createServer);
-const listen = promisify(http.listen);
-const app = require('./lib/app.js');
+const http = require('http');
 
 const port = 2000;
-server(app).then(() => {
-  return listen(port).then(err => { err; });
+const server = http.createServer();
+
+server.listen(port, () => {
+  console.log('Server listening on port ', port);
 });

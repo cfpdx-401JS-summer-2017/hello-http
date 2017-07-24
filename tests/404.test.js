@@ -4,15 +4,15 @@ const assert = chai.assert;
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
-describe('returns 404 error page', () => {
+describe.only('returns 404 error page', () => {
+	const req = chai.request(app);
+
 	it('has poorly-formed url', () => {
-		return chai.request(app)
-			.get('..\.../greet')
+		return req.get('/error')
 			.then(res => {
-				console.log(res);
-			})
-	});
-	it('the server process is not running', () => {
+				assert.equal('Your request has failed.', res.text);
+			});
+	}), it('the server process is not running', () => {
 
 	});
 });
