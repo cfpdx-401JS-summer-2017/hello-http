@@ -1,16 +1,17 @@
-// * Responds with one of (at least) three interesting facts about http (up to you) when method is
-// GET and the url (path) is `/fact`
-
-const assert = require('assert');
-const app = require('../lib/app.js');
-const fs = require('graceful-fs');
+const app = require('../lib/app');
+const chai = require('chai');
+const assert = chai.assert;
+const chaiHttp = require('chai-http');
+chai.use(chaiHttp);
 
 describe('random facts', () => {
-	// assert.equals('request type is get');
+	const req = chai.request(app);
 	it('path is /fact', () => {
-		// assert.equal('path is /fact');
-		it('fact exists in file', () => {
-			// assert.equal('fact exists in external file' )
-		});
+		return req.get('/fact')
+			.then(res => {
+				console.log(res.text, 'The more you know!');
+				// assert.equal('Your random fact is', res.text);
+			});
 	});
 });
+
