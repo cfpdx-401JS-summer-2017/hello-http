@@ -144,7 +144,8 @@ describe('server', () => {
         request.get(`/log/${posted.time}`)
           .end((err, res) => {
             if(err) return done(err);
-            assert.equal(res.body, 'ground control to major tom');
+            let response = res.res.text;
+            assert.equal(response, 'ground control to major tom');
             done();
           });
       });
