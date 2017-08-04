@@ -3,6 +3,7 @@ const http = require('http');
 const chaiHttp = require('chai-http');
 const assert = chai.assert;
 chai.use(chaiHttp);
+const facts = require('../lib/fact').facts;
 const app = require('../lib/app');
 
 describe('server requests', () => {
@@ -31,6 +32,16 @@ describe('server requests', () => {
             .end((err, res) => {
                 if(err) done(err);
                 assert.equal(res.text, 'sup joe');
+                done();
+            });
+    });
+
+    it('spits a fact at you', done => {
+        request.get('/fact')
+            .end((err, res) => {
+                if(err) done(err);
+                assert.ok(res.text);
+                assert.notEqual(facts.indexOf(res.text), -1);
                 done();
             });
     });
