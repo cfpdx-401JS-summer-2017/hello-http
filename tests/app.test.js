@@ -51,6 +51,8 @@ describe('server requests', () => {
             .end((err, res) => {
                 if(!err) done(err);
                 assert.ok(err);
+                assert.equal(res.statusCode, 404);
+                assert.equal(res.text, 'CANNOT PUT butt');
                 done();
             });
     });
