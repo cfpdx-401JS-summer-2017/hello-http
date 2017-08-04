@@ -45,4 +45,13 @@ describe('server requests', () => {
                 done();
             });
     });
+
+    it('returns a 404 error if invalid request method', done => {
+        request.put('/butt')
+            .end((err, res) => {
+                if(!err) done(err);
+                assert.ok(err);
+                done();
+            });
+    });
 });
