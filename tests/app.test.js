@@ -31,6 +31,7 @@ describe('server requests', () => {
             .end((err, res) => {
                 if(err) done(err);
                 assert.equal(res.text, 'sup joe');
+                done();
             });
     });
 });
