@@ -129,23 +129,23 @@ describe('server', () => {
       .send('We like to post it post it')
       .end((err, res) => {
         if(err) return done(err);
-        assert.isOk(res.timestamp);
+        let logged = JSON.parse(res.body);
+        assert.equal(logged.body, 'We like to post it post it');
         done();
       });
   });
 
-  it.skip('retrieves the contents of a file when given the filename without the file extension', done => {
-    // let timestamp = '';
-    // let body = '';
+  it('retrieves the contents of a file when given the filename without the file extension', done => {
     request.post('/log')
       .send('ground control to major tom')
       .end((err, res) => {
         if(err) return done(err);
-        // timestamp = res.timestamp;
-        request.get(`/log/${JSON.stringify(res.timestamp)}`)
+        let posted = JSON.parse(res.body);
+        request.get(`/log/${posted.time}`)
           .end((err, res) => {
             if(err) return done(err);
-            assert.equal(res.body, 'ground control to major tom');
+            let response = res.res.text;
+            assert.equal(response, 'ground control to major tom');
             done();
           });
       });

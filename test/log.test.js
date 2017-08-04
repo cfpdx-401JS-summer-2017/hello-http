@@ -10,7 +10,7 @@ const assert = chai.assert;
 
 const log = require('../lib/log');
 
-describe.skip('log', () => {
+describe('log', () => {
 
   const dir = path.join(__dirname, '../log');
 
@@ -32,7 +32,8 @@ describe.skip('log', () => {
     const msg = 'I love timestamping';
     log.logIt(msg, (err, logged) => {
       if(err) return done(err);
-      assert.equal(logged.timestamp.length, 24);
+      let response = JSON.parse(logged);
+      assert.equal(response.time.length, 24);
       done();
     });
 
