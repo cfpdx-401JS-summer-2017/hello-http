@@ -152,11 +152,11 @@ describe('server', () => {
   });
 
   it('gets an array of logs', (done) => {
-    request.get('/log')
+    request.get('/logs')
       .end((err, res) => {
         if(err) return done(err);
-        let logs = JSON.parse(res.body);
-        assert.equal(logs.body.length, 1);
+        let logs = JSON.parse(res.text);
+        assert.equal(logs.length, 5);
         done();
       });
   });
