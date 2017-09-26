@@ -156,7 +156,7 @@ describe('server', () => {
       .end((err, res) => {
         if(err) return done(err);
         let logs = JSON.parse(res.text);
-        assert.equal(logs.length, 5);
+        assert.equal(logs.length, 1);
         done();
       });
   });
