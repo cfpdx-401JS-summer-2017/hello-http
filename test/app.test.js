@@ -150,4 +150,14 @@ describe('server', () => {
           });
       });
   });
+
+  it('gets an array of logs', (done) => {
+    request.get('/log')
+      .end((err, res) => {
+        if(err) return done(err);
+        let logs = JSON.parse(res.body);
+        assert.equal(logs.body.length, 1);
+        done();
+      });
+  });
 });
