@@ -1,0 +1,36 @@
+{
+	"name": "hello-http",
+	"version": "1.0.0",
+	"description": "",
+	"main": "./lib/app.js",
+	"directories": {
+		"lib": "./lib",
+		"test": "./tests"
+	},
+	"scripts": {
+		"test:watch:nodemon": "nodemon --watch lib --watch tests --exec 'npm test'",
+		"test:watch": "npm test -- -w",
+		"test": "mocha tests --reporter mocha-better-spec-reporter",
+		"start": "npm run test:watch:nodemon"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/wbeck32/hello-http.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/wbeck32/hello-http/issues"
+	},
+	"homepage": "https://github.com/wbeck32/hello-http#readme",
+	"devDependencies": {
+		"chai": "^4.1.0",
+		"chai-http": "^3.0.0",
+		"cowsay": "^1.1.9",
+		"graceful-fs": "^4.1.11",
+		"mocha": "^3.4.2",
+		"mocha-better-spec-reporter": "^3.1.0",
+		"promisify": "0.0.3",
+		"urlencode": "^1.1.0"
+	}
+}
