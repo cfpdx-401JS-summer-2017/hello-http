@@ -65,4 +65,17 @@ describe('server', () => {
         });
     });
 
+    describe('logs', () => {
+        it('/log', done => {
+            const animal = { type: 'dog', name: 'charlie' };
+            request.post('/log')
+                .send(animal)
+                .end((err, res) => {
+                    if (err) return done(err);
+                    assert.include(res.body, 'timestamp');
+                    done();
+                });
+        });
+    });
+
 });
