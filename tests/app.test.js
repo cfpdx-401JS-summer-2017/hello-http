@@ -4,11 +4,11 @@ const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 const { assert } = chai;
 const app = require('../lib/app');
-const random = require('../lib/random.facts.js');
 const fs = require('fs');
 
 describe('server', () => {
     const request = chai.request(app);
+    let fileName = null;
 
     it('says hello stranger when no name specified', done => {
         request.get('/greeting')
@@ -74,4 +74,29 @@ describe('server', () => {
                 done();
             });
     });
+
+    it('returns all log files', done => {
+
+        request
+            .get('/logs')
+            .end((err, res) => {
+                if (err) return done(err);
+                fileName = (res.body[0] + '.txt');
+                assert.ok(fs.statSync('./logs').isDirectory());
+                assert.ok(res.body.length);
+                done();
+            });
+            
+    });
+
+    it('returns log file by id', done => {
+        request
+            .get('/logs/' + fileName)
+            .end((err, res) => {
+                if(err) return done(err);
+                assert.equal(res.text, 'By the power of Greyskull!');
+                done();
+            });
+    });
+
 });
