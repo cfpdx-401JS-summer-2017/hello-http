@@ -1,4 +1,0 @@
-err => {
-        if(err) return(err);
-        // callback(null, data);
-    }
